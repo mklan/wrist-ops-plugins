@@ -8,7 +8,7 @@ module.exports = {
     var upSec = Math.floor(process.uptime());
 
     var stats = [
-      'loaded: external',
+      `date: ${new Date()}`,
       'node ' + process.version,
       'uptime: ' + upSec + 's',
       'heap: ' + mb(mem.heapUsed) + ' / ' + mb(mem.heapTotal),
