@@ -65,7 +65,7 @@ module.exports = {
     var model      = p.model  || 'gpt-4o-mini';
     var apiKey     = p.apiKey || '';
     var sysPrompt  = p.systemPrompt || null;
-    var verifySSL  = (typeof p.verifySSL === 'boolean') ? p.verifySSL : true;
+    var verifySSL  = (p.verifySSL === false || p.verifySSL === 'false') ? false : true;
 
     var messages = [];
     if (sysPrompt) messages.push({ role: 'system', content: sysPrompt });
