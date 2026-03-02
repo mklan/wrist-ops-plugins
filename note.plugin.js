@@ -10,7 +10,7 @@ module.exports = {
         "Content-Type": "application/json",
         "x-api-key": context.params.apiKey
       },
-      body: JSON.stringify({ payload: note })
+      body: JSON.stringify({ payload: context.params.note })
     });
     const json = await res.json();
 
