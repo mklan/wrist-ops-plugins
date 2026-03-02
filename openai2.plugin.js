@@ -14,7 +14,7 @@
 'use strict';
 
 module.exports = {
-  name: 'openai',
+  name: 'openai2',
   description: 'OpenAI-compatible chat completion',
 
   handle: async function(text, context, callbacks) {
