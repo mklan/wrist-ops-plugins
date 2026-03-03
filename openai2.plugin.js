@@ -19,10 +19,12 @@ module.exports = {
 
   handle: async function(text, context, callbacks) {
     const p          = context.params || {};
-    const baseUrl    = p.url    || 'https://api.openai.com';
-    const model      = p.model  || 'gpt-4o-mini';
-    const apiKey     = p.apiKey || '';
-    const sysPrompt  = p.systemPrompt || null;
+    const c          = context.config;
+    const baseUrl    = c.url    || 'https://api.openai.com';
+    const model      = c.model  || 'gpt-4o-mini';
+    const route   = c.route || '/v1/chat/completions';
+    const apiKey     = c.apiKey || '';
+    const sysPrompt  = c.systemPrompt || null;
 
     // Use context.messages for multi-turn chat if present, otherwise build messages from sysPrompt and text
     let messages;
@@ -35,12 +37,12 @@ module.exports = {
     } else {
       messages = [];
       if (sysPrompt) messages.push({ role: 'system', content: sysPrompt });
-      messages.push({ role: 'user', content: text });
+      messages.push({ role: 'user', content: p.query });
     }
 
     const bodyObj = { model: model, messages: messages, stream: true };
     const bodyStr = JSON.stringify(bodyObj);
-    const endpoint = baseUrl.replace(/\/$/, '') + '/v1/chat/completions';
+    const endpoint = baseUrl.replace(/\/$/, '') + route;
 
     const headers = {
       'Content-Type':   'application/json',
