@@ -50,7 +50,7 @@ module.exports = {
     };
     if (apiKey) headers['Authorization'] = 'Bearer ' + apiKey;
 
-    callbacks.log('Using endpoint:', endpoint);
+    callbacks.log('options', o);
 
 
     const fetchOpts = {
