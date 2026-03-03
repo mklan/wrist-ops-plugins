@@ -22,7 +22,7 @@ module.exports = {
     const c          = context.config;
     const baseUrl    = c.url    || 'https://api.openai.com';
     const model      = c.model  || 'gpt-4o-mini';
-    const route   = c.route || '/v1/chat/completions';
+    const chatCompletionsPath   = c.chatCompletionsPath || '/v1/chat/completions';
     const apiKey     = c.apiKey || '';
     const sysPrompt  = c.systemPrompt || null;
 
@@ -42,7 +42,7 @@ module.exports = {
 
     const bodyObj = { model: model, messages: messages, stream: true };
     const bodyStr = JSON.stringify(bodyObj);
-    const endpoint = baseUrl.replace(/\/$/, '') + route;
+    const endpoint = baseUrl.replace(/\/$/, '') + chatCompletionsPath;
 
     const headers = {
       'Content-Type':   'application/json',
