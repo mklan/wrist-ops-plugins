@@ -19,12 +19,12 @@ module.exports = {
 
   handle: async function(text, context, callbacks) {
     const p          = context.params || {};
-    const c          = context.config;
-    const baseUrl    = c.url    || 'https://api.openai.com';
-    const model      = c.model  || 'gpt-4o-mini';
-    const chatCompletionsPath   = c.chatCompletionsPath || '/v1/chat/completions';
-    const apiKey     = c.apiKey || '';
-    const sysPrompt  = c.systemPrompt || null;
+    const o          = context.options || {};
+    const baseUrl    = o.url    || p.url    || 'https://api.openai.com';
+    const model      = o.model  || p.model  || 'gpt-4o-mini';
+    const chatCompletionsPath   = o.chatCompletionsPath || p.chatCompletionsPath || '/v1/chat/completions';
+    const apiKey     = o.apiKey || p.apiKey || '';
+    const sysPrompt  = o.systemPrompt || p.systemPrompt || null;
 
     // Use context.messages for multi-turn chat if present, otherwise build messages from sysPrompt and text
     let messages;
@@ -37,7 +37,7 @@ module.exports = {
     } else {
       messages = [];
       if (sysPrompt) messages.push({ role: 'system', content: sysPrompt });
-      messages.push({ role: 'user', content: p.query });
+      messages.push({ role: 'user', content: p.query || text });
     }
 
     const bodyObj = { model: model, messages: messages, stream: true };
@@ -64,9 +64,8 @@ module.exports = {
       try {
         const res = await fetch(endpoint, fetchOpts);
         if (!res.ok) {
-          const text = await res.text();
-          callbacks.onResult('[ERROR] HTTP ' + res.status + ': ' + text);
-          return { error: 'HTTP ' + res.status + ': ' + text };
+          const errBody = await res.text();
+          throw new Error('HTTP ' + res.status + ': ' + errBody);
         }
         const reader = res.body.getReader();
         let buffer = '';
@@ -102,16 +101,10 @@ module.exports = {
           fetchOpts,
           error: err
         });
-        callbacks.onResult('[ERROR] Fetch failed: ' + (err && err.message ? err.message : String(err)) + (err && err.stack ? ('\n' + err.stack) : '') + '\nEndpoint: ' + endpoint + '\nFetchOpts: ' + JSON.stringify(fetchOpts));
-        return {
-          error: 'Fetch failed: ' + (err && err.message ? err.message : String(err)),
-          stack: err && err.stack ? err.stack : undefined,
-          endpoint,
-          fetchOpts: JSON.stringify(fetchOpts)
-        };
+        throw err;
       }
     } catch (err) {
-      return { error: 'Fetch failed: ' + (err && err.message ? err.message : String(err)), stack: err && err.stack ? err.stack : undefined };
+      throw err;
     }
   }
 };
