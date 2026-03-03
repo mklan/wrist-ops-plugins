@@ -14,7 +14,7 @@
 'use strict';
 
 module.exports = {
-  name: 'openai',
+  name: 'openai2',
   description: 'OpenAI-compatible chat completion',
 
   handle: async function(text, context, callbacks) {
@@ -23,7 +23,6 @@ module.exports = {
     const model      = p.model  || 'gpt-4o-mini';
     const apiKey     = p.apiKey || '';
     const sysPrompt  = p.systemPrompt || null;
-    const verifySSL  = (typeof p.verifySSL === 'boolean') ? p.verifySSL : true;
 
     const messages = [];
     if (sysPrompt) messages.push({ role: 'system', content: sysPrompt });
