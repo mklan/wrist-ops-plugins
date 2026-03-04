@@ -18,12 +18,6 @@ const plugin: Plugin = {
       description: "Your API key for authentication",
       required: true,
     },
-    note: {
-      type: "string",
-      label: "Note Payload",
-      description: "The content of the note to create (as JSON string)",
-      required: true,
-    },
   },
   handle: async function (context: Context): Promise<PluginResult> {
     const { note } = context.params || {};

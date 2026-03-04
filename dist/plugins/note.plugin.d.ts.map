@@ -1,1 +1,1 @@
-{"version":3,"file":"note.plugin.d.ts","sourceRoot":"","sources":["../../src/plugins/note.plugin.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AAEH,OAAO,EAAyB,MAAM,EAAE,MAAM,uBAAuB,CAAC;AAEtE,QAAA,MAAM,MAAM,EAAE,MAqCb,CAAC;AAEF,SAAS,MAAM,CAAC"}
+{"version":3,"file":"note.plugin.d.ts","sourceRoot":"","sources":["../../src/plugins/note.plugin.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AAEH,OAAO,EAAyB,MAAM,EAAE,MAAM,uBAAuB,CAAC;AAEtE,QAAA,MAAM,MAAM,EAAE,MA+Bb,CAAC;AAEF,SAAS,MAAM,CAAC"}
