@@ -20,8 +20,8 @@ const plugin = {
         // Try sending a timer intent (Wear OS)
         await hooks.intent("android.intent.action.SET_TIMER", {
             extras: {
-                "android.intent.extra.alarm.LENGTH": seconds.toString(),
-                "android.intent.extra.alarm.SKIP_UI": "true",
+                "android.intent.extra.alarm.LENGTH": seconds,
+                "android.intent.extra.alarm.SKIP_UI": true,
             },
         });
         await hooks.log(`Timer intent sent for ${seconds} seconds`);
