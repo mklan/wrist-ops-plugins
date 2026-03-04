@@ -2,15 +2,14 @@
 const plugin = {
     name: "fs_notes_example",
     description: "Demo: Create, list, and read notes using the plugin_data filesystem.",
-    options: {
+    params: {
         note: {
-            type: "string",
             label: "Note Text",
             description: "Text to save as a note (for create)",
         },
     },
     handle: async function (context, hooks) {
-        const { note } = context.options;
+        const { note } = context.params;
         const fname = `note_${Date.now()}.txt`;
         await hooks.fs.write(fname, note || "");
         await hooks.log("Note created:", fname);
