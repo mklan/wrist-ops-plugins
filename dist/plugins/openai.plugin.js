@@ -12,16 +12,43 @@
  * You can also hard-code defaults in this file if you prefer.
  */
 const plugin = {
-    name: "openai2",
+    name: "openai",
     description: "OpenAI-compatible chat completion",
+    options: {
+        url: {
+            type: "string",
+            label: "API Base URL",
+            description: 'Base URL for the OpenAI-compatible API (default: "https://api.openai.com")',
+        },
+        model: {
+            type: "string",
+            label: "Model Name",
+            description: 'Model name to use (default: "gpt-4o-mini")',
+        },
+        apiKey: {
+            type: "string",
+            label: "API Key",
+            description: "Bearer token for Authorization header",
+        },
+        systemPrompt: {
+            type: "string",
+            label: "System Prompt",
+            description: "Optional system prompt to include at the start of the conversation",
+        },
+        chatCompletionsPath: {
+            type: "string",
+            label: "Chat Completions Path",
+            description: 'Path for chat completions endpoint (default: "/v1/chat/completions")',
+        },
+    },
     handle: async function (context, hooks) {
         const p = context.params || {};
         const o = context.options || {};
-        const baseUrl = o.url || p.url || "https://api.openai.com";
-        const model = o.model || p.model || "gpt-4o-mini";
-        const chatCompletionsPath = o.chatCompletionsPath || p.chatCompletionsPath || "/v1/chat/completions";
-        const apiKey = o.apiKey || p.apiKey || "";
-        const sysPrompt = o.systemPrompt || p.systemPrompt || null;
+        const baseUrl = o.url || "https://api.openai.com";
+        const model = o.model || "gpt-4o-mini";
+        const chatCompletionsPath = o.chatCompletionsPath || "/v1/chat/completions";
+        const apiKey = o.apiKey || "";
+        const sysPrompt = o.systemPrompt || null;
         // Use context.messages for multi-turn chat if present, otherwise build messages from sysPrompt and text
         let messages = [];
         if (context.messages &&
@@ -113,4 +140,4 @@ const plugin = {
     },
 };
 module.exports = plugin;
-//# sourceMappingURL=openai2.plugin.js.map
+//# sourceMappingURL=openai.plugin.js.map

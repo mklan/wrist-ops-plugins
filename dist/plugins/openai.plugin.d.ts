@@ -13,4 +13,4 @@
 import { Plugin } from "../types/plugin.types";
 declare const plugin: Plugin;
 export = plugin;
-//# sourceMappingURL=openai2.plugin.d.ts.map
+//# sourceMappingURL=openai.plugin.d.ts.map
