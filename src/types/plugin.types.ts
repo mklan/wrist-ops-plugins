@@ -31,7 +31,7 @@ export interface Plugin {
   examplePattern?: string;
   handle: (
     context: Context,
-    hooks?: PluginHooks,
+    hooks: PluginHooks,
   ) => Promise<PluginResult | null>;
 }
 
