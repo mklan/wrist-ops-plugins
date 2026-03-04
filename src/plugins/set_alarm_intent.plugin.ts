@@ -10,7 +10,7 @@ const plugin: Plugin = {
   description:
     "Triggers an Android Intent to set an alarm at the provided time.",
   examplePattern:
-    "^(?:set alarm for|Alarm um) (?<time>\\d{1,2}:\\d{2})(?: Uhr)?(?: mit Nachricht (?<message>.+))?",
+    "^set alarm for (?<time>\\d{1,2}:\\d{2})(?: with message (?<message>.+))?",
   handle: async function (
     context: Context,
     hooks: PluginHooks,
@@ -33,8 +33,6 @@ const plugin: Plugin = {
     return {
       result: `Alarm set for ${time}${message ? ` with message: ${message}` : ""}`,
     };
-
-    return { result: null, error: "Intent hook not available" };
   },
 };
 
