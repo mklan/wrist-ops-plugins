@@ -67,6 +67,9 @@ export interface IntentOptions {
     type?: string;
     extras?: Record<string, string | number | boolean>;
     flags?: number;
+    /** Target package for explicit intents (idiomatic JS name) */
+    packageName?: string;
+    /** Target package for explicit intents (legacy alias for packageName) */
     package?: string;
 }
 export interface FsHooks {
