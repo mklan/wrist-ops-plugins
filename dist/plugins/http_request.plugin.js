@@ -25,11 +25,12 @@ const plugin = {
             label: "HTTP Method",
             description: "HTTP method to use (default: POST)",
         },
-        headers: {
-            type: "string",
-            label: "HTTP Headers (JSON)",
-            description: 'Optional HTTP headers as a JSON string, e.g. \'{"Authorization": "Bearer ..."}\'',
-        },
+        // headers: {
+        //   type: "string",
+        //   label: "HTTP Headers (JSON)",
+        //   description:
+        //     'Optional HTTP headers as a JSON string, e.g. \'{"Authorization": "Bearer ..."}\'',
+        // },
         body: {
             type: "string",
             label: "Request Body (JSON)",
