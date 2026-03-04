@@ -69,9 +69,10 @@ const plugin: Plugin = {
     hooks: PluginHooks,
   ): Promise<PluginResult> {
     if (context.options?.transformContext) {
-      context = (await hooks.eval(context.options.transformContext, {
+      context = (await hooks.eval(
+        context.options.transformContext,
         context,
-      })) as Context;
+      )) as Context;
     }
 
     const { options } = context;

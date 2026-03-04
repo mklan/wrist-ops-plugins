@@ -54,9 +54,7 @@ const plugin = {
     },
     handle: async function (context, hooks) {
         if (context.options?.transformContext) {
-            context = (await hooks.eval(context.options.transformContext, {
-                context,
-            }));
+            context = (await hooks.eval(context.options.transformContext, context));
         }
         const { options } = context;
         const method = (options.method || "POST").toUpperCase();
