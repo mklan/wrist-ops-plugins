@@ -25,7 +25,8 @@ export interface Plugin {
     name: string;
     description: string;
     options?: PluginOptionsSchema;
-    handle: (context: Context, hooks: PluginHooks) => Promise<PluginResult | null>;
+    examplePattern?: string;
+    handle: (context: Context, hooks?: PluginHooks) => Promise<PluginResult | null>;
 }
 export interface Message {
     role: "system" | "user" | "assistant";

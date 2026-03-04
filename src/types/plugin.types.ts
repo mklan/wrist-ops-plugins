@@ -28,9 +28,10 @@ export interface Plugin {
   name: string;
   description: string;
   options?: PluginOptionsSchema;
+  examplePattern?: string;
   handle: (
     context: Context,
-    hooks: PluginHooks,
+    hooks?: PluginHooks,
   ) => Promise<PluginResult | null>;
 }
 
