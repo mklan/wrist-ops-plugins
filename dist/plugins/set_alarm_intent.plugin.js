@@ -17,7 +17,7 @@ const plugin = {
     },
     examplePattern: "^set alarm for (?<time>\\d{1,2}:\\d{2})(?: with message (?<message>.+))?",
     handle: async function (context, hooks) {
-        const { time, message } = context.options;
+        const { time, message } = context.params;
         if (!time) {
             return { result: null, error: "Time is required" };
         }

@@ -28,7 +28,7 @@ const plugin: Plugin = {
     context: Context,
     hooks: PluginHooks,
   ): Promise<PluginResult> {
-    const { time, message } = context.options;
+    const { time, message } = context.params;
     if (!time) {
       return { result: null, error: "Time is required" };
     }
